@@ -25,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if (empty($errors)) { // データベースに投稿を挿入
-            $sql = "INSERT INTO posts (title, message) VALUES (:title, :message)";
-            $stmt = $pdo->prepare($sql);
+            $stmt = $pdo->prepare("INSERT INTO posts (title, message) VALUES (:title, :message)");
             $stmt->execute(['title' => $title, 'message' => $message]);
             header("Location: index.php");
             exit();
@@ -36,8 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 // 投稿一覧機能
 $postDetails = []; // 投稿データを保存するための配列
-$sql = "SELECT id, title, message FROM posts ORDER BY id DESC";
-$stmt = $pdo->prepare($sql);
+$stmt = $pdo->prepare("SELECT id, title, message FROM posts ORDER BY id DESC");
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $postDetails 配列に格納
