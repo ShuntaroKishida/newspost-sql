@@ -65,15 +65,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $pos
     <head>
         <meta charset="UTF-8">
         <title>投稿詳細</title>
-        <script>
-            function confirmSubmit() {
-                return confirm('本当にコメントしますか？');
-            }
-
-            function confirmDelete() {
-                return confirm('本当にこのコメントを削除しますか？');
-            }
-        </script>
     </head>
     <body>
         <h1><a href="./index.php">Laravel News</a></h1>
@@ -93,7 +84,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $pos
             endwhile;
         endif;
         ?>
-        <form action="show.php?id=<?= $postId; ?>" method="post" onsubmit="return confirmSubmit();">
+        <form action="show.php?id=<?= $postId; ?>" method="post" onsubmit="return confirm('本当にコメントしますか？');">
             <label for="comment">コメント:</label>
             <textarea id="comment" name="comment"></textarea>
             <br>
@@ -107,7 +98,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $pos
             $comment = $commentDetails[$index];
         ?>
             <p><?= $comment['commentText']; ?></p>
-            <form method="post" action="show.php?id=<?= $postId; ?>" onsubmit="return confirmDelete();">
+            <form method="post" action="show.php?id=<?= $postId; ?>" onsubmit="return confirm('本当にこのコメントを削除しますか？');">
                 <input type="hidden" name="delete_comment_id" value="<?= $comment['id']; ?>">
                 <input type="submit" value="削除">
             </form>

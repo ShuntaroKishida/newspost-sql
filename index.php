@@ -49,11 +49,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $pos
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Laravel News</title>
-        <script>
-            function confirmSubmit() {
-                return confirm('本当に投稿しますか？');
-            }
-        </script>
     </head>
     <body>
         <h1><a href="./index.php">Laravel News</a></h1>
@@ -68,7 +63,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // 取得したデータを $pos
             endwhile;
         endif;
         ?>
-        <form action="./index.php" method="post" onsubmit="return confirmSubmit();">
+        <form action="./index.php" method="post" onsubmit="return confirm('本当に投稿しますか？');">
             <label for="title">タイトル:</label>
             <input type="text" id="title" name="title">
             <br><br>
